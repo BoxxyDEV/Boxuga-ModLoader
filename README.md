@@ -10,10 +10,10 @@ This ModLoader is proudly set for both RGH/JTAG Xbox 360s and HEN/CFW PS3s
 this modloader has features like a built in menu to control Grand Theft Auto V Story Mode do such simple things as not showing the mini map to stuff like teleportation
 
 ## What did Boxuga Use to make this with
-* A laptop 
-* SC-CL 
-* Visual Studio
-* NotYourDope's Base
+* A [Old Dell Optiplex](https://www.dell.com/en-us/work/shop/cty/pdp/spd/optiplex-780) and a [HP Laptop](https://support.hp.com/au-en/document/c06452793)
+* [SC-CL](https://github.com/NativeFunction/SC-CL) 
+* [Visual Studio](https://visualstudio.microsoft.com/)
+* [NotYourDope's Base](https://archive.org/details/NotYourDopeModloaderBaseCpp)
 
 
 ## Why do some scripts only exist on certain platforms 
@@ -27,8 +27,8 @@ They may not be easy to find on that platform
 * Meteor Shower By Danii X Modz
 * James Reborn Recovery
 * Danii X Modz
-* Ultimate Teleport **Only On PS3**
-* Drone Mode **Only for PS3**
+* Ultimate Teleport
+* ProjectCL
 
 ### Self Options
 * God Mode
@@ -40,6 +40,8 @@ They may not be easy to find on that platform
 * Wanted Level switch
 * Money Drop
 * Kill Yourself
+* Shake Cam
+* Invisablility
 
 ### Weapon Options
 * Give/Take All Weapons
