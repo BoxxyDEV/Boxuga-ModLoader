@@ -71,4 +71,3 @@ They may not be easy to find on that platform
 * Smooth Scroll Toggle
 * Menu Postition Left/Right
 * Background Image Toggle
-* Add Script
