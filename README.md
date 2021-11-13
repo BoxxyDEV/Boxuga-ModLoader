@@ -14,6 +14,7 @@ this modloader has features like a built in menu to control Grand Theft Auto V S
 * [SC-CL](https://github.com/NativeFunction/SC-CL) 
 * [Visual Studio](https://visualstudio.microsoft.com/)
 * [NotYourDope's Base](https://archive.org/details/NotYourDopeModloaderBaseCpp)
+* He also Used [FiveM's Native Documentation](https://docs.fivem.net/natives/) and [Dev-C's Native Documentation](http://dev-c.com/nativedb/) for a refrence
 
 
 ## Why do some scripts only exist on certain platforms 
