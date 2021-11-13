@@ -7,7 +7,7 @@ Boxuga Loader is developed by Boxuga aka BoxxyDEV
 Sorry downloads are currently not avalible yet
 
 ## What platform is this for
-This ModLoader is proudly set for both RGH/JTAG Xbox 360s and HEN/CFW PS3s
+This ModLoader is proudly set for both RGH/JTAG Xbox 360s and HEN/CFW PS3s if boxuga finds out how he will release a version for OFW PS3
 
 ## What makes this modloader differant from others?
 this modloader has features like a built in menu to control Grand Theft Auto V Story Mode do such simple things as not showing the mini map to stuff like teleportation
