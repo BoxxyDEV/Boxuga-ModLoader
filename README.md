@@ -58,6 +58,7 @@ They may not be easy to find on that platform
 
 ### Misc
 * Time/Weather Editor
+* Sync time with system
 * Disable MiniMap
 * Thermal/Night Vision
 * Teleportation
