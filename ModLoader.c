@@ -16,7 +16,7 @@
 
 void MainMenu()
 {
-	DrawBackground(11 + CustomScriptCount + AddCustomScript, false, "", "");
+	DrawBackground(9 + CustomScriptCount + AddCustomScript);
 	AddTitle("Boxuga");
 	AddSubtext(strcatGlobal(Welcome_lang, GET_PLAYER_NAME(PLAYER_ID()))); // says welcome to the user as the subtext like "Welcome: Boxuga"
 	AddSubmenuOption(Self_lang, Self_MSG_lang, (SelfOptions));
@@ -29,13 +29,13 @@ void MainMenu()
 		AddSubmenuOption(ModMenus_lang, ModMenus_MSG_lang, (ModMenus));
 		AddSubmenuOption(Misc_Scripts_lang, Misc_Scripts_MSG_lang, (Misc));
 	}
-	if (IS_PS3_VERSION())
+	if (IS_PS3_VERSION()) // this is too link to the ps3 version of the pages
 	{
-		AddSubmenuOption(ModMenus_lang, ModMenus_MSG_lang, (ModMenus));
-		AddSubmenuOption(Misc_Scripts_lang, Misc_Scripts_MSG_lang, (Misc));
+		AddSubmenuOption(ModMenus_lang, ModMenus_MSG_lang, (ModMenusPS));
+		AddSubmenuOption(Misc_Scripts_lang, Misc_Scripts_MSG_lang, (MiscPS));
 	}
-	AddSubmenuOption("Settings", "Modify lots of aspects of the loader", (Setx));
-	AddSubmenuOption("Credits", "Credits to the people who helped make this possible :)", (cred));
+	AddSubmenuOption(Settings_lang, Settings_MSG_lang, (Setx));
+	AddSubmenuOption(Credits_lang, Credits_MSG_lang, (cred));
 	AddScriptOptionNoBinds(CustomScript1, &CustomScript1StackSize);
 	AddScriptOptionNoBinds(CustomScript2, &CustomScript2StackSize);
 	AddScriptOptionNoBinds(CustomScript3, &CustomScript3StackSize);

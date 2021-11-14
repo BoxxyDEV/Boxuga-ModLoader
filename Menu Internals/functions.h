@@ -8,7 +8,7 @@ void NotifyMSG(const char* Title, char* MSG)
 	_SET_NOTIFICATION_TEXT_ENTRY("STRING");
 	_SET_NOTIFICATION_FLASH_COLOR(RGBA(BannerR, BannerG, BannerB, 125));
 	ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(MSG); // Message
-	_SET_NOTIFICATION_MESSAGE("yt_boxuga", "yt_boxuga", 1, 7, strcatGlobal("~bold~", Title), "");
+	_SET_NOTIFICATION_MESSAGE("CHAR_SOCIAL_CLUB", "CHAR_SOCIAL_CLUB", 1, 7, strcatGlobal("~bold~", Title), "");
 	_DRAW_NOTIFICATION(false, false);
 }
 
@@ -177,7 +177,7 @@ void AddTitle(const char* Title)
 	}
 }
 
-void DrawBackground(int NumberOfOptions, bool custombanner, char* TextureDir, char* Texture)
+void DrawBackground(int NumberOfOptions)
 {
 	float OptionCountFloat;
 	float ScrollbarCoordStartingPoint;
@@ -201,25 +201,14 @@ void DrawBackground(int NumberOfOptions, bool custombanner, char* TextureDir, ch
 			MaybeLoadTexture("BoxugaBackground");
 			if (HAS_STREAMED_TEXTURE_DICT_LOADED("BoxugaBackground"))
 			{
-				DRAW_SPRITE("BoxugaBackground", BackgroundImage, vector2(MenuXCoord3, BackgroundCoord), Size(0.2250f, BackgroundLength), 0.0f, RGBA(255, 255, 255, 255));
+				DRAW_SPRITE("BoxugaBackground", BackgroundImage, vector2(MenuXCoord3, BackgroundCoord), Size(0.2250f, BackgroundLength), 0.0f, RGBA(255, 255, 255, 200));
 			}
 		}
 		else
 		{
 			DRAW_RECT(vector2(MenuXCoord3, BackgroundCoord), Size(0.2250f, BackgroundLength), RGBA(BackgroundR, BackgroundG, BackgroundB, BackgroundA));
 		}
-		if (custombanner)
-		{
-			MaybeLoadTexture(TextureDir);
-			if (HAS_STREAMED_TEXTURE_DICT_LOADED(TextureDir))
-			{
-				DRAW_SPRITE(TextureDir, Texture, vector2(MenuXCoord3, (0.5596f - GetSafezoneSizeHalfed())), Size(0.2250f, 0.09f), 0.0f, RGBA(255, 255, 255, 255));
-			}
-		}
-		if (!custombanner)
-		{
-			DRAW_RECT(vector2(MenuXCoord3, (0.5596f - GetSafezoneSizeHalfed())), Size(0.2250f, 0.09f), RGBA(BannerR, BannerG, BannerB, 255));
-		}
+        DRAW_RECT(vector2(MenuXCoord3, (0.5596f - GetSafezoneSizeHalfed())), Size(0.2250f, 0.09f), RGBA(BannerR, BannerG, BannerB, BannerA));
 		BottomBarCoord = ((OptionCountFloat + 1.0f) * 0.035f) + (0.5871f - GetSafezoneSizeHalfed());
 		if (OptionCountDisplay)
 		{
@@ -487,7 +476,23 @@ void AddOnOffOption(bool On)
 					DRAW_SPRITE("mphud", "thumb_down_white", vector2((MenuXCoord2 - 0.018f), SpriteCoord), Size(0.019f, 0.026f), 0.0f, RGBA(255, 255, 255, 255));
 				}
 			}
+		}	
+		if (ToggleButtons == 7)
+		{
+			StringBase(2, SelectedTextR, SelectedTextG, SelectedTextB, true); // sets up the command
+			SET_TEXT_SCALE(0.0f, 0.361f); // sets the scale of the text
+			BEGIN_TEXT_COMMAND_DISPLAY_TEXT("STRING"); // begins the the command to display text set as STRING type
+		    if (On)
+			{
+				ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME("ON"); // if on will display ON
+			}
+			if (!On)
+			{
+				ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME("OFF"); // if off will display OFF
+			}
+			END_TEXT_COMMAND_DISPLAY_TEXT(vector2((MenuXCoord2 - 0.019f), OptionCoord)); // ends the commands and sets coords
 		}
+
 	}
 }
 
@@ -582,7 +587,7 @@ void AddIntOption(int* DisplayNumber, int minValue, int maxValue)
 	}
 }
 
-void AddStringOption(const char* OptionText, int* DisplayNumber, int minValue, int maxValue, char* change1, char* change2, char* change3, char* change4, char* change5, char* change6)
+void AddStringOption(const char* OptionText, int* DisplayNumber, int minValue, int maxValue, char* change1, char* change2, char* change3, char* change4, char* change5, char* change6, char* change7)
 {
 	AddOption(OptionText);
 	RGB optionColour;
@@ -642,6 +647,10 @@ void AddStringOption(const char* OptionText, int* DisplayNumber, int minValue, i
 		if (*DisplayNumber == 6)
 		{
 			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change6);
+		}		
+		if (*DisplayNumber == 7)
+		{
+			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change7);
 		}
         END_TEXT_COMMAND_DISPLAY_TEXT(vector2((MenuXCoord2 - 0.066f), OptionCoord));
 	}
@@ -685,7 +694,11 @@ void AddIntOptionSettings(const char* OptionText, int* DisplayNumber, int minVal
 		ADD_TEXT_COMPONENT_INTEGER(*DisplayNumber);
 		END_TEXT_COMMAND_DISPLAY_TEXT(vector2((MenuXCoord2 - 0.018f), OptionCoord));
 	}
-
+	if (CurrentOption == OptionCount)
+	{
+		AddInstructionalButton(DpadLeft, "-");
+		AddInstructionalButton(DpadRight, "+");
+	}
 }
 
 void Numberintoption(const char* Option, int* interger, int change)
@@ -855,8 +868,8 @@ void AddSubmenuOption(const char* OptionText, char* Help, void* submenuLoc)
 	AddOption(OptionText);
 	if (CurrentOption == OptionCount)
 	{
-		AddInstructionalButton(Cross, "Enter Menu");
-		AddInstructionalButton(Square, "Help");
+		AddInstructionalButton(Cross, Enter_Submenu_lang);
+		AddInstructionalButton(Square, Help_lang);
 	}
 	if (WasXJustPressed(177))
 	{
@@ -875,7 +888,7 @@ void AddSubmenuOption(const char* OptionText, char* Help, void* submenuLoc)
 
 void AddCustomScriptOption()
 {
-	AddOption("Add Script");
+	AddOption(AddScript_lang);
 	if (WasXJustPressed(177))
 	{
 		DISPLAY_ONSCREEN_KEYBOARD(0, "", "", "", "", "", "", 31);
@@ -990,65 +1003,209 @@ void NotifyOption(const char* OptionText, char* NotificationTitle, char* Notific
 	}
 }
 
-void ColorChanger(const char* DisplayName, char* Description, int type, int R, int G, int B)
+
+void ColorChanger()
 {
-	AddOption(DisplayName); // adds option that user can see what color is 
-	if (WasXJustPressed(177))
+	if (TitleColor == 1)
 	{
-		if (type == 1) // changes title
-		{
-			TitleR = R;
-			TitleG = G;
-			TitleB = B;
-		}
-		if (type == 2) // changes background
-		{
-			BackgroundR = R;
-			BackgroundG = G;
-			BackgroundB = B;
-		}
-		if (type == 3) // chceks for banner
-		{
-			BannerR = R;
-			BannerG = G;
-			BannerB = B;
-		}
-		if (type == 4) // this checks to see if selected text has been specified in th string type
-		{
-			SelectedTextR = R;
-			SelectedTextG = G;
-			SelectedTextB = B;
-		}
-		if (type == 5) // this checks to see if Unselected text is checked
-		{
-			UnselectedTextR = R;
-			UnselectedTextB = B;
-			UnselectedTextG = G;
-		}
+		TitleR = 255;
+		TitleG = 255;
+		TitleB = 255;
 	}
-	if (WasXJustPressed(179))
+	if (TitleColor == 2)
 	{
-		NotifyMSG("Boxuga", Description); // displays a notification of what it does or set
+		TitleR = 0;
+		TitleG = 0;
+		TitleB = 0;
+	}
+	if (TitleColor == 3)
+	{
+		TitleR = 161;
+		TitleG = 0;
+		TitleB = 214;
+	}
+	if (TitleColor == 4)
+	{
+		TitleR = 0;
+		TitleG = 255;
+		TitleB = 72;
+	}
+	if (TitleColor == 5)
+	{
+		TitleR = 255;
+		TitleG = 71;
+		TitleB = 71;
+	}
+	if (BannerColor == 1)
+	{
+		BannerR = 161;
+		BannerG = 0;
+		BannerB = 214;
+	}
+	if (BannerColor == 2)
+	{
+		BannerR = 255;
+		BannerG = 255;
+		BannerB = 255;
+	}
+	if (BannerColor == 3)
+	{
+		BannerR = 0;
+		BannerG = 0;
+		BannerB = 0;
+	}
+	if (BannerColor == 4)
+	{
+		BannerR = 0;
+		BannerG = 255;
+		BannerB = 72;
+	}
+	if (BannerColor == 5)
+	{
+		BannerR = 255;
+		BannerG = 71;
+		BannerB = 71;
+	}
+	if (BackgroundColor == 1)
+	{
+		BackgroundR = 0;
+		BackgroundG = 0;
+		BackgroundB = 0;
+	}
+	if (BackgroundColor == 2)
+	{
+		BackgroundR = 161;
+		BackgroundG = 0;
+		BackgroundB = 214;
+	}
+	if (BackgroundColor == 3)
+	{
+		BackgroundR = 255;
+		BackgroundG = 255;
+		BackgroundB = 255;
+	}
+	if (BackgroundColor == 4)
+	{
+		BackgroundR = 0;
+		BackgroundG = 255;
+		BackgroundB = 72;
+	}
+	if (BackgroundColor == 5)
+	{
+		BackgroundR = 255;
+		BackgroundG = 71;
+		BackgroundB = 71;
+	}
+	if (SelectedTextColor == 1)
+	{
+		SelectedTextR = 255;
+		SelectedTextG = 255;
+		SelectedTextB = 255;
+	}
+	if (SelectedTextColor == 2)
+	{
+		SelectedTextR = 161;
+		SelectedTextG = 0;
+		SelectedTextB = 214;
+	}	
+	if (SelectedTextColor == 3)
+	{
+		SelectedTextR = 0;
+		SelectedTextG = 0;
+		SelectedTextB = 0;
+	}	
+	if (SelectedTextColor == 4)
+	{
+		SelectedTextR = 0;
+		SelectedTextG = 255;
+		SelectedTextB = 72;
+	}	
+	if (SelectedTextColor == 5)
+	{
+		SelectedTextR = 255;
+		SelectedTextG = 71;
+		SelectedTextB = 71;
+	}
+	if (UnselectedTextColor == 1)
+	{
+		UnselectedTextR = 255;
+		UnselectedTextG = 255;
+		UnselectedTextB = 255;
+	}
+	if (UnselectedTextColor == 2)
+	{
+		UnselectedTextR = 161;
+		UnselectedTextG = 0;
+		UnselectedTextB = 214;
+	}
+	if (UnselectedTextColor == 3)
+	{
+		UnselectedTextR = 0;
+		UnselectedTextG = 0;
+		UnselectedTextB = 0;
+	}
+	if (UnselectedTextColor == 4)
+	{
+		UnselectedTextR = 0;
+		UnselectedTextG = 255;
+		UnselectedTextB = 72;
+	}
+	if (UnselectedTextColor == 5)
+	{
+		UnselectedTextR = 255;
+		UnselectedTextG = 71;
+		UnselectedTextB = 71;
+	}
+	if (ScrollbarColor == 1)
+	{
+		ScrollbarR = 255;
+	    ScrollbarG = 255;
+		ScrollbarB = 255;
+	}
+	if (ScrollbarColor == 2)
+	{
+		ScrollbarR = 161;
+		ScrollbarG = 0;
+		ScrollbarB = 214;
+	}
+	if (ScrollbarColor == 3)
+	{
+		ScrollbarR = 0;
+		ScrollbarG = 0;
+		ScrollbarB = 0;
+	}
+	if (ScrollbarColor == 4)
+	{
+		ScrollbarR = 0;
+		ScrollbarG = 255;
+		ScrollbarB = 72;
+	}
+	if (ScrollbarColor == 5)
+	{
+		ScrollbarR = 255;
+		ScrollbarG = 71;
+		ScrollbarB = 71;
 	}
 }
 
-void ChangeBackgroundOption(const char* Option, char* backgroundname)
-{
-	AddOption(Option);
-	if (WasXJustPressed(177))
-	{
-		Background_name = backgroundname;
-	}
-}
 
 
 
-void ChangeTime(const char* OptionText, int Hour, int Min, int Sec) 
+
+
+void ChangeTime(const char* OptionText, int Hour, int Min, int Sec, int Type) 
 {
 	AddOption(OptionText);
 	if (WasXJustPressed(177))
 	{
-		SET_CLOCK_TIME(Hour, Min, Sec);
+		if (Type == 1)
+		{
+			SET_CLOCK_TIME(Hour, Min, Sec);
+		}
+		if (Type == 2)
+		{
+			ADD_TO_CLOCK_TIME(Hour, Min, Sec);
+		}
 	}
 }
 
@@ -1292,6 +1449,7 @@ void BackgroundChanger()
 	}
 }
 
+
 void ResetColors(const char* Option)
 {
 	AddOption(Option);
@@ -1325,5 +1483,6 @@ void ResetColors(const char* Option)
 		ScrollbarB = 255;
 		ScrollbarA = 125;
 		bgimage = true;
+		base = 1;
 	}
 }
