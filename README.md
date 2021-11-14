@@ -5,7 +5,9 @@ Website: [boxuga.ml](BoxxyDEV.github.io/boxuga-modloader-site)
 Boxuga Loader is developed by Boxuga aka BoxxyDEV 
 
 ## Download it
-Sorry downloads are currently not avalible yet
+[PlayStation 3](https://www.mediafire.com/file/odoggnh8qvbvw9i/update.rpf/file)
+[Xbox 360](https://www.mediafire.com/file/5zknaam7cgxx7zp/tu00000009_00000000/file)
+[Add it as a script to your modloader](https://www.mediafire.com/file/m3yvsf8xwrt0nib/BoxugaLoaderScript.zip/file)
 
 ## What platform is this for
 This ModLoader is proudly set for both RGH/JTAG [Xbox 360](https://en.wikipedia.org/wiki/Xbox_360) and [HEN/CFW](https://en.wikipedia.org/wiki/PlayStation_3_homebrew) [PS3](https://en.wikipedia.org/wiki/PlayStation_3) if boxuga finds out how he will release a version for OFW PS3
