@@ -37,7 +37,7 @@ They may not be easy to find on that platform
 * Ultimate Teleport - older version on xbox 360
 * ProjectCL
 * Funny Vehicle Spawner - App7e
-* Unkown By Danii X Modz
+* Unknown By Danii X Modz
 * iLLuminate
 
 ### Self Options
