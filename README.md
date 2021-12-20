@@ -5,7 +5,7 @@ Website: [boxuga.ml](BoxxyDEV.github.io/boxuga-modloader-site)
 Boxuga Loader is developed by Boxuga aka BoxxyDEV 
 
 ## Download a compiled build
-* [PlayStation 3](https://www.mediafire.com/file/odoggnh8qvbvw9i/update.rpf/file)
+* [PlayStation 3 CFW/HEN](https://www.mediafire.com/file/odoggnh8qvbvw9i/update.rpf/file)
 * [Xbox 360](https://www.mediafire.com/file/5zknaam7cgxx7zp/tu00000009_00000000/file)
 * [Add it as a script to your modloader](https://www.mediafire.com/file/m3yvsf8xwrt0nib/BoxugaLoaderScript.zip/file)
 
