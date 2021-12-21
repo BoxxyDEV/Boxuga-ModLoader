@@ -3,7 +3,7 @@ void PlayMenuSound (const char* Sound)
 	PLAY_SOUND_FRONTEND(-1, Sound, "HUD_FRONTEND_DEFAULT_SOUNDSET", true);
 }
 
-void NotifyMSG(const char* Title, char* MSG) 
+void NotifyMSG(char* Title, char* MSG) 
 {
 	_SET_NOTIFICATION_TEXT_ENTRY("STRING");
 	_SET_NOTIFICATION_FLASH_COLOR(RGBA(BannerR, BannerG, BannerB, 125));
@@ -255,8 +255,32 @@ void DrawBackground(int NumberOfOptions)
 		ScrollbarCoord = ScrollbarDestinationCoord;
 	}
 	DRAW_RECT(vector2(MenuXCoord3, ScrollbarCoord), Size(0.2250f, 0.035f), RGBA(ScrollbarR, ScrollbarG, ScrollbarB, ScrollbarA));
+	if (InfoBox)
+	{
+		DRAW_RECT(vector2(0.5, 0.8), Size(0.36, 0.1), RGBA(BackgroundR, BackgroundG, BackgroundB, 89));
+		SET_TEXT_OUTLINE(true);
+		SET_TEXT_SCALE(0.0f, 0.5f);
+		SET_TEXT_FONT(6);
+		BEGIN_TEXT_COMMAND_DISPLAY_TEXT("STRING");
+		ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(strcatGlobal("Player: ", GET_PLAYER_NAME(PLAYER_ID())));
+		END_TEXT_COMMAND_DISPLAY_TEXT(vector2(0.33f, 0.81f));
+	}
 }	
 
+void infoboxText(const char* Help)
+{
+		if (InfoBox)
+		{
+			if (!IS_STRING_NULL_OR_EMPTY(Help))
+			{
+				SET_TEXT_OUTLINE(true); // sets text to ouline
+				SET_TEXT_SCALE(0.0f, 0.4f); // sets the size
+				BEGIN_TEXT_COMMAND_DISPLAY_TEXT("STRING"); // begins command
+				ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(Help); // sets text
+				END_TEXT_COMMAND_DISPLAY_TEXT(vector2(0.33f, 0.76f)); // 
+			}
+		}
+}
 void DisableControls()
 {
 	if (DisableSpecialAbility)
@@ -587,7 +611,7 @@ void AddIntOption(int* DisplayNumber, int minValue, int maxValue)
 	}
 }
 
-void AddStringOption(const char* OptionText, int* DisplayNumber, int minValue, int maxValue, char* change1, char* change2, char* change3, char* change4, char* change5, char* change6, char* change7)
+void AddStringOption(const char* OptionText, char* Help, int* DisplayNumber, int minValue, int maxValue, char* change1, char* change2, char* change3, char* change4, char* change5, char* change6, char* change7, char* change8, char* change9, char* change10)
 {
 	AddOption(OptionText);
 	RGB optionColour;
@@ -652,11 +676,27 @@ void AddStringOption(const char* OptionText, int* DisplayNumber, int minValue, i
 		{
 			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change7);
 		}
+		if (*DisplayNumber == 8)
+		{
+			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change8);
+		}
+		if (*DisplayNumber == 9)
+		{
+			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change9);
+		}
+		if (*DisplayNumber == 10)
+		{
+			ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(change10);
+		}
         END_TEXT_COMMAND_DISPLAY_TEXT(vector2((MenuXCoord2 - 0.066f), OptionCoord));
+	}
+	if (CurrentOption == OptionCount)
+	{
+		infoboxText(Help);
 	}
 }
 
-void AddIntOptionSettings(const char* OptionText, int* DisplayNumber, int minValue, int maxValue)
+void AddIntOptionSettings(const char* OptionText, int* DisplayNumber, int minValue, int maxValue, bool DisplayApply)
 {
 	AddOption(OptionText);
 	if (CurrentOption == OptionCount)
@@ -696,12 +736,16 @@ void AddIntOptionSettings(const char* OptionText, int* DisplayNumber, int minVal
 	}
 	if (CurrentOption == OptionCount)
 	{
+		if (DisplayApply)
+		{
+			AddInstructionalButton(Cross, "Apply");
+		}
 		AddInstructionalButton(DpadLeft, "-");
 		AddInstructionalButton(DpadRight, "+");
 	}
 }
 
-void Numberintoption(const char* Option, int* interger, int change)
+void Numberintoption(const char* Option, int* interger, int change) // did use this in a pre-release version i belive
 {
 	AddOption(Option);
 	if (WasXJustPressed(177))
@@ -870,6 +914,7 @@ void AddSubmenuOption(const char* OptionText, char* Help, void* submenuLoc)
 	{
 		AddInstructionalButton(Cross, Enter_Submenu_lang);
 		AddInstructionalButton(Square, Help_lang);
+		infoboxText(Help);
 	}
 	if (WasXJustPressed(177))
 	{
@@ -967,7 +1012,7 @@ void AddSubtext(const char* Subtitle)
 	OptionCount = 0;
 }
 
-void AddBoolOption(const char* OptionText, bool* toggle)
+void AddBoolOption(const char* OptionText, bool* toggle, char* Help)
 {
 	AddOption(OptionText);
 	AddOnOffOption(*toggle);
@@ -975,31 +1020,24 @@ void AddBoolOption(const char* OptionText, bool* toggle)
 	{
 		*toggle = !*toggle;
 	}
-
+	
 	if (CurrentOption == OptionCount)
 	{
 		AddInstructionalButton(Cross, strcatGlobal("Toggle ", OptionText));
-	}
-}
-
-void AddBoolOptionNoOnOff(const char* OptionText, bool* toggle)
-{
-	AddOption(OptionText);
-	if (WasXJustPressed(177))
-	{
-		*toggle = !*toggle;
+		infoboxText(Help);
 	}
 }
 
 
 
 
-void NotifyOption(const char* OptionText, char* NotificationTitle, char* NotificationMSG)
+
+void NotifyOption(const char* OptionText, char* Title, char* Help)
 {
 	AddOption(OptionText); // displayed as an option
-	if (WasXJustPressed(177)) // if the option was pressed
+	if (CurrentOption == OptionCount)
 	{
-		NotifyMSG(NotificationTitle, NotificationMSG);
+		infoboxText(Help);
 	}
 }
 
@@ -1209,21 +1247,6 @@ void ChangeTime(const char* OptionText, int Hour, int Min, int Sec, int Type)
 	}
 }
 
-void AddDropDownBool(const char* OptionTXT, int AddedOptions, bool* BoolName)
-{
-	AddOption(OptionTXT);
-	AddOnOffOption(*BoolName);
-	if (WasXJustPressed(177))
-	{
-		EnabledDropdownOptionsSelf = AddedOptions;
-		*BoolName = !*BoolName;
-	}
-	if (!*BoolName)
-	{
-		EnabledDropdownOptionsSelf = 0;
-	}
-}
-
 
 void ChangeWeather(const char* OptionText, char* Weather)
 {
@@ -1286,31 +1309,133 @@ void carfix(const char* Optiontext)
 	}
 }
 
-void killvehicle(const char* OptionText, int type)
+void killvehicle(const char* OptionText)
 {
-	AddOption(OptionText);
+	
+	AddStringOption(OptionText, VehicleDestroy_infobox_lang, &NumKillVeh, 1, 3, "Delete", "Engine", Explode_lang, "", "", "", "", "", "", "");
 	if (WasXJustPressed(177))
 	{
 		int killfalcon = GET_VEHICLE_PED_IS_USING(PLAYER_PED_ID());
-		if (type == 1)
+		if (NumKillVeh == 1)
 		{
 			SET_ENTITY_AS_MISSION_ENTITY(killfalcon, true, true);
 			DELETE_VEHICLE(&killfalcon);
 		}
-		if (type == 2)
+		if (NumKillVeh == 2)
 		{
 			SET_VEHICLE_ENGINE_HEALTH(killfalcon, 0);
 		}
+		if (NumKillVeh == 3)
+		{
+			EXPLODE_VEHICLE(killfalcon, true, false);
+		}
+
 	}
 }
 
-void TeleportOption(const char* OText, int x, int y, int z)
+void TeleportOption(const char* OText)
 {
-	AddOption(OText);
-	if (WasXJustPressed(177))
+	vector3 MountChiliad = vector3(494, 5589, 795);
+	vector3 LSIA = vector3(-989, -2905, 14);
+	vector3 MazeBank = vector3(-72, -820, 327);
+	vector3 MHouse = vector3(-824, 177, 72);
+	vector3 FNHouse = vector3(12, 548, 177);
+	vector3 FOHouse = vector3(-16, -1448, 31);
+	vector3 THouse = vector3(1985, 3813, 33);
+	vector3 TAir = vector3(1721, 3259, 41);
+	vector3 pedloc = GET_ENTITY_COORDS(PLAYER_PED_ID(), true);
+	AddStringOption(OText, TP_MSG_lang, &NumTeleportSwitch, 1, 10, "Mount Chiliad", "Los Santos Airport", "Maze Bank", "Michael's House", "Franklin's New House", "Franklin's Old House", "Trevor's House", "Trevor's Airfield", "Skyfall", "Waypoint");
+	if (WasXJustPressed(177)) // if x pressed then will tp player
 	{
+		if (NumTeleportSwitch == 1)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), MountChiliad, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 2)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), LSIA, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+	    if (NumTeleportSwitch == 3)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), MazeBank, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 4)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), MHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 5)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), FNHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 6)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), FOHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 7)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), THouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 8)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), TAir, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 9)
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), vector3(pedloc.x, pedloc.y, 500), GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+		if (NumTeleportSwitch == 10)
+		{
+			if (DOES_BLIP_EXIST(GET_FIRST_BLIP_INFO_ID(8))) // checks if waypoint exists
+			{
+				vector3 waypoint = GET_BLIP_COORDS(GET_FIRST_BLIP_INFO_ID(8)); // this grabs tge waypoint and put it into coords varible
+				START_PLAYER_TELEPORT(PLAYER_ID(), vector3(waypoint.x, waypoint.y, waypoint.z), GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+			}
+		}
 		NotifyMSG("Boxuga", "Please wait all textures need to load");
-		START_PLAYER_TELEPORT(PLAYER_ID(), vector3(x, y, z), GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+	}
+	if (WasXJustPressed(179))
+	{
+		if (NumTeleportSwitch == 1)
+		{
+			SET_NEW_WAYPOINT(vector2(MountChiliad.x, MountChiliad.y));
+		}
+		if (NumTeleportSwitch == 2)
+		{
+			SET_NEW_WAYPOINT(vector2(LSIA.x, LSIA.y));
+		}
+		if (NumTeleportSwitch == 3)
+		{
+			SET_NEW_WAYPOINT(vector2(MazeBank.x, MazeBank.y));
+		}
+		if (NumTeleportSwitch == 4)
+		{
+			SET_NEW_WAYPOINT(vector2(MHouse.x, MHouse.y));
+		}
+		if (NumTeleportSwitch == 5)
+		{
+			SET_NEW_WAYPOINT(vector2(FNHouse.x, FNHouse.y));
+		}
+		if (NumTeleportSwitch == 6)
+		{
+			SET_NEW_WAYPOINT(vector2(FOHouse.x, FOHouse.y));
+		}
+		if (NumTeleportSwitch == 7)
+		{
+			SET_NEW_WAYPOINT(vector2(THouse.x, THouse.y));
+		}
+		if (NumTeleportSwitch == 8)
+		{
+			SET_NEW_WAYPOINT(vector2(TAir.x, TAir.y));
+		}
+		if (NumTeleportSwitch > 8)
+		{
+			NotifyMSG("Boxuga", "You can not waypoint this sorry mate");
+		}
+	}
+	if (CurrentOption == OptionCount)
+	{
+		AddInstructionalButton(Cross, "Teleport");
+		AddInstructionalButton(Square, "Waypoint");
 	}
 }
 
@@ -1375,6 +1500,10 @@ void GiveAllWeapons(const char* Option)
 		GIVE_WEAPON_TO_PED(PLAYER_PED_ID(), WEAPON_BALL, 10000, false, false);
 		GIVE_WEAPON_TO_PED(PLAYER_PED_ID(), WEAPON_SNOWBALL, 10000, false, false);
 	}
+	if (CurrentOption == OptionCount)
+	{
+		infoboxText(GiveAllWeapons_info_lang);
+	}
 }
 
 void RemoveWeapons(const char* Option)
@@ -1383,6 +1512,10 @@ void RemoveWeapons(const char* Option)
 	if (WasXJustPressed(177))
 	{
 		REMOVE_ALL_PED_WEAPONS(PLAYER_PED_ID(), false);
+	}
+	if (CurrentOption == OptionCount)
+	{
+		infoboxText(RemoveAllWeapons_info_lang);
 	}
 }
 
@@ -1395,12 +1528,16 @@ void GiveMoneyOption(const char* OptionText, int AddedMoney)
 	}
 }
 
-void Suidcide(const char* Option)
+void Suidcide(const char* Option, char* Help)
 {
 	AddOption(Option);
 	if (WasXJustPressed(177))
 	{
 		SET_ENTITY_HEALTH(PLAYER_PED_ID(), 0);
+	}
+	if (CurrentOption == OptionCount)
+	{
+		infoboxText(Help);
 	}
 }
 
@@ -1484,5 +1621,36 @@ void ResetColors(const char* Option)
 		ScrollbarA = 125;
 		bgimage = true;
 		base = 1;
+	}
+}
+
+
+void VehOpt(const char* Option, int opt)
+{
+	AddOption(Option);
+	if (WasXJustPressed(177))
+	{
+		int currentvehicle = GET_VEHICLE_PED_IS_USING(PLAYER_PED_ID());
+		if (opt == 1) // test this
+		{
+			DISPLAY_ONSCREEN_KEYBOARD(0, "", "", "", "", "", "", 8);
+			KeyboardNumPlate = true;
+		}
+
+	}
+
+}
+
+void WantedLVL(const char* Option, char* Help)
+{
+	AddIntOptionSettings(Option, &wantedlvl, 0, 5, true);
+	if (WasXJustPressed(177))
+	{
+		SET_PLAYER_WANTED_LEVEL(PLAYER_ID(), wantedlvl, true);
+		SET_PLAYER_WANTED_LEVEL_NOW(PLAYER_ID(), true);
+	}
+	if (CurrentOption == OptionCount)
+	{
+		infoboxText(Help);
 	}
 }
