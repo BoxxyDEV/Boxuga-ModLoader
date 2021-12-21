@@ -1,7 +1,6 @@
 void OptionLoops()
 {
-	
-
+	vector3 bulletlocation;
 	if (Moneydrop)
 	{
 		vector3 playerlocation = GET_ENTITY_COORDS(PLAYER_PED_ID(), true);
@@ -60,6 +59,26 @@ void OptionLoops()
 	{
 		int coolvehicle = GET_VEHICLE_PED_IS_USING(PLAYER_PED_ID());
 		SET_VEHICLE_FIXED(coolvehicle);
+	}
+	if (GodMode)
+	{
+		SET_ENTITY_HEALTH(PLAYER_PED_ID(), 200); // constantly loops 200 health
+	}
+	if (TPGun)
+	{
+		if (GET_PED_LAST_WEAPON_IMPACT_COORD(PLAYER_PED_ID(), &bulletlocation))
+		{
+			START_PLAYER_TELEPORT(PLAYER_ID(), bulletlocation, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
+		}
+	}
+	if (ExplosiveAmmo)
+	{
+		SET_EXPLOSIVE_AMMO_THIS_FRAME(PLAYER_ID());
+	}
+
+	if (SuperPunch)
+	{
+		SET_EXPLOSIVE_MELEE_THIS_FRAME(PLAYER_ID());
 	}
 }
 
