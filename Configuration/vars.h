@@ -1,7 +1,7 @@
 void* CurrentSubmenu;
-int DisableCinematicCameraTimer, CustomScriptCount, ScriptToLoadStackSize,  CurrentOption, SubmenuOptionCount, GlareHandle, OptionCountFont = 4, OptionCountR = 255, OptionCountG = 255, OptionCountB = 255, ScrollArrowsR = 255, ScrollArrowsG = 255, ScrollArrowsB = 255,  OptionCount, SubmenuLevel, ScrollTimer, OptionFont = 4, SpriteOutlineR, SpriteOutlineG, SpriteOutlineB, InstructionalButtonCount, InstructionalButtonsHandle;
+int DisableCinematicCameraTimer, CustomScriptCount, ScriptToLoadStackSize,  CurrentOption, SubmenuOptionCount, GlareHandle, OptionCountFont = 4, OptionCountR = 255, OptionCountG = 255, OptionCountB = 255, ScrollArrowsR = 255, ScrollArrowsG = 255, ScrollArrowsB = 255,  OptionCount, SubmenuLevel, ScrollTimer, OptionFont = 4, SpriteOutlineR, SpriteOutlineG, SpriteOutlineB, InstructionalButtonCount, InstructionalButtonsHandle, NumKillVeh = 1, NumTeleportSwitch = 1;
 int* LastSubmenu[10], LastOption[10], CustomScript1StackSize, CustomScript2StackSize, CustomScript3StackSize, CustomScript4StackSize, CustomScript5StackSize, CustomScript6StackSize, CustomScript7StackSize, CustomScript8StackSize, CustomScript9StackSize, CustomScript10StackSize;
-bool AllowCustomScripts = false, AddCustomScript, AlreadyRequested, ScrollArrows = true, ScrollArrowsAlways, KeyboardMonitoring;
+bool AllowCustomScripts = false, AddCustomScript, AlreadyRequested, ScrollArrows = true, ScrollArrowsAlways, KeyboardMonitoring, KeyboardNumPlate;
 char* ScriptToLoad;
 float ScrollbarCoord, MenuXCoord1, MenuXCoord2, MenuXCoord3, BackgroundCoord, BackgroundLength, BottomBarCoord, ScrolbarCoord, ScrollArrowsCoord, OptionCoordStartingPoint, OptionCoord, SpriteCoord;
 char CustomScript1[30], CustomScript2[30], CustomScript3[30], CustomScript4[30], CustomScript5[30], CustomScript6[30], CustomScript7[30], CustomScript8[30], CustomScript9[30], CustomScript10[30];
@@ -39,12 +39,17 @@ bool TexturedBanner = true; // set to false if should draw the regular banner
 bool SyncTime = false;
 bool ShakeMode = false; // if set to true player will be drunk
 bool Vanish = false; // set to true if you want to be invisable
+bool TPGun = false; // set to true if you want all guns to tp you on impact of bullet
+bool ExplosiveAmmo = false; //set to true if you want explosives where u shoot
+bool SuperPunch = false; // if set to true you will have
+bool InfoBox = true;
+bool TimedSubText = true; // turn this off if you dont want to have on custom dates like in decemeber it will say Merry Christmas
 int Rando; // this is not an option
 int MoneyBagType = 1; // change what type of money bag 1 for classic and 2 for pc style
 int TitleFont = 7;
 int BannerR = 161, BannerG, BannerB = 214, BannerA = 235;
 int SpriteOnR = 255, SpriteOnG = 255, SpriteOnB = 255, SpriteOffR = 255, SpriteOffG = 255, SpriteOffB = 255;
-int Bind1 = 166, Bind2 = 179;
+int Bind1 = 166, Bind2 = 181; // dpad left and LB
 int BackgroundR, BackgroundG, BackgroundB, BackgroundA = 125;
 int UnselectedTextR = 255, UnselectedTextG = 255, UnselectedTextB = 255;
 int SelectedTextR = 255, SelectedTextG = 255, SelectedTextB = 255;
