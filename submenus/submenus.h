@@ -8,10 +8,10 @@ void titlemenu()
 	}
 	DrawBackground(4);
 	AddTitle(TitleColors_lang);
-	AddIntOptionSettings(Red_lang, &TitleR, 0, 255);
-	AddIntOptionSettings(Green_lang, &TitleG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &TitleB, 0, 255);
-	AddStringOption(PremadeColors_lang, &TitleColor, 1, 5, Title_Default_lang, Black_lang, Purple_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &TitleR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &TitleG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &TitleB, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &TitleColor, 1, 5, Title_Default_lang, Black_lang, Purple_lang, Green_lang, Red_lang, "", "", "", "", "");
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -26,11 +26,11 @@ void bannermenu()
 	}
 	DrawBackground(5);
 	AddTitle(BannerColors_lang);
-	AddIntOptionSettings(Red_lang, &BannerR, 0, 255);
-	AddIntOptionSettings(Green_lang, &BannerG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &BannerB, 0, 255);
-	AddIntOptionSettings(Alpha_lang, &BannerA, 0, 255);
-	AddStringOption(PremadeColors_lang, &BannerColor, 1, 5, Banner_Default_lang, White_lang, Black_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &BannerR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &BannerG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &BannerB, 0, 255, false);
+	AddIntOptionSettings(Alpha_lang, &BannerA, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &BannerColor, 1, 5, Banner_Default_lang, White_lang, Black_lang, Green_lang, Red_lang, "", "", "", "", "");
 	{
 		DrawInstructionalButtons();
 	}
@@ -44,11 +44,11 @@ void backgroundmenu()
 	}
 	DrawBackground(5);
 	AddTitle(BannerColors_lang);
-	AddIntOptionSettings(Red_lang, &BackgroundR, 0, 255);
-	AddIntOptionSettings(Green_lang, &BackgroundG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &BackgroundB, 0, 255);
-	AddIntOptionSettings(Alpha_lang, &BackgroundA, 0, 255);
-	AddStringOption(PremadeColors_lang, &BackgroundColor, 1, 5, Background_Default_lang, Purple_lang, White_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &BackgroundR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &BackgroundG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &BackgroundB, 0, 255, false);
+	AddIntOptionSettings(Alpha_lang, &BackgroundA, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &BackgroundColor, 1, 5, Background_Default_lang, Purple_lang, White_lang, Green_lang, Red_lang, "", "", "", "", "");
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -63,10 +63,10 @@ void selectedtextmenu()
 	}
 	DrawBackground(4);
 	AddTitle(SelectedTextColors_lang);
-	AddIntOptionSettings(Red_lang, &SelectedTextR, 0, 255);
-	AddIntOptionSettings(Green_lang, &SelectedTextG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &SelectedTextB, 0, 255);
-	AddStringOption(PremadeColors_lang, &SelectedTextColor, 1, 5, Selected_Text_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &SelectedTextR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &SelectedTextG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &SelectedTextB, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &SelectedTextColor, 1, 5, Selected_Text_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "", "", "", "");
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -81,10 +81,10 @@ void unselectedtextmenu()
 	}
 	DrawBackground(4);
 	AddTitle(UnselectedTextColors_lang);
-	AddIntOptionSettings(Red_lang, &UnselectedTextR, 0, 255);
-	AddIntOptionSettings(Green_lang, &UnselectedTextG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &UnselectedTextB, 0, 255);
-	AddStringOption(PremadeColors_lang, &UnselectedTextColor, 1, 5, Unselected_Text_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &UnselectedTextR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &UnselectedTextG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &UnselectedTextB, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &UnselectedTextColor, 1, 5, Unselected_Text_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "", "", "", "");
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -99,11 +99,11 @@ void ScrollBarRGB()
 	}
 	DrawBackground(5);
 	AddTitle(ScrollBar_lang);
-	AddIntOptionSettings(Red_lang, &ScrollbarR, 0, 255);
-	AddIntOptionSettings(Green_lang, &ScrollbarG, 0, 255);
-	AddIntOptionSettings(Blue_lang, &ScrollbarB, 0, 255);
-	AddIntOptionSettings(Alpha_lang, &ScrollbarA, 0, 255);
-	AddStringOption(PremadeColors_lang, &ScrollbarColor, 1, 5, ScrollBar_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "");
+	AddIntOptionSettings(Red_lang, &ScrollbarR, 0, 255, false);
+	AddIntOptionSettings(Green_lang, &ScrollbarG, 0, 255, false);
+	AddIntOptionSettings(Blue_lang, &ScrollbarB, 0, 255, false);
+	AddIntOptionSettings(Alpha_lang, &ScrollbarA, 0, 255, false);
+	AddStringOption(PremadeColors_lang, ColorSelect_lang, &ScrollbarColor, 1, 5, ScrollBar_Default_lang, Purple_lang, Black_lang, Green_lang, Red_lang, "", "", "", "", "");
 }
 
 void colr()
@@ -117,7 +117,7 @@ void colr()
 	AddSubmenuOption(SelectedTextColors_lang, SelectedTextColors_MSG_lang, (selectedtextmenu));
 	AddSubmenuOption(UnselectedTextColors_lang, UnselectedTextColors_MSG_lang, (unselectedtextmenu));
 	AddSubmenuOption(ScrollBar_lang, ScrollBar_MSG_lang, (ScrollBarRGB));
-	AddBoolOption(JRHUDCOLORS_lang, &UseJamesRebornModLoaderEditorFile);
+	AddBoolOption(JRHUDCOLORS_lang, &UseJamesRebornModLoaderEditorFile, "Use values from a modified HudColor.dat created by James");
 	ResetColors(ResetColors_lang);
 	if (DrawInstructions)
 	{
@@ -132,7 +132,7 @@ void funer()
 	AddSubtext("Good Friends");
 	NotifyOption("FazeModz", "FazeModz", "Faze Modz is a good place to learn");
 	NotifyOption("Lush Modz", "Lush Modz", "Thank you to lush modz for being a good friend");
-	NotifyOption("James Reborn", "James Reborn", "Thanks for being there and still being friends with me after all my stupid ideas");
+	NotifyOption("James Reborn", "James Reborn", "Thank you for being friends even with my stupid ideas");
 	NotifyOption("TheRouletteBoi", "TheRouletteboi", "Thanks for being there and talking to me");
 	if (DrawInstructions)
 	{
@@ -170,8 +170,8 @@ void TimeOptions()
 	}
 	DrawBackground(9);
 	AddTitle(Time_lang);
-	AddBoolOption(FreezeTime_lang, &FreezeTime);
-	AddBoolOption(SyncTime_lang, &SyncTime);
+	AddBoolOption(FreezeTime_lang, &FreezeTime, "Makes time stop");
+	AddBoolOption(SyncTime_lang, &SyncTime, "Make time sync with the system");
 	ChangeTime(Morning_lang, 7, 0, 0, 1);
 	ChangeTime(Midday_lang, 12, 0, 0, 1);
 	ChangeTime(Afternoon_lang, 15, 0, 0, 1);
@@ -207,25 +207,7 @@ void WeatherOptions()
 	}
 }
 
-void TelportationMenu()
-{
-	vector3 playercoords = GET_ENTITY_COORDS(PLAYER_ID(), true);
-	DrawBackground(9);
-	AddTitle(TP_lang);
-	TeleportOption("Mount Chiliad", 494, 5589, 795);
-	TeleportOption("Los Santos Airport", -989, -2905, 14);
-	TeleportOption("Maze Bank", -72, -820, 327);
-	TeleportOption("Michael's House", -824, 177, 72);
-	TeleportOption("Franklin's New House", 12, 548, 177);
-	TeleportOption("Franklin's Old House", -16, -1448, 31);
-	TeleportOption("Trevor's House", 1985, 3813, 33);
-	TeleportOption("Trevor's Airfield", 1721, 3259, 41);
-	TeleportOption("Skyfall", playercoords.x, playercoords.y, 2136);
-	if (DrawInstructions)
-	{
-		DrawInstructionalButtons();
-	}
-}
+
 
 void SelfOptions()
 {
@@ -273,25 +255,30 @@ void SelfOptions()
 			SET_MOBILE_RADIO_ENABLED_DURING_GAMEPLAY(false);
 		}
 	}
-	if (CurrentOption == 9)
+	if (CurrentOption == 12)
 	{
-		SET_PLAYER_WANTED_LEVEL(PLAYER_ID(), wantedlvl, true);
-		SET_PLAYER_WANTED_LEVEL_NOW(PLAYER_ID(), true);
+		if (WasXJustPressed(177))
+		{
+			SET_ENTITY_HEALTH(PLAYER_PED_ID(), 200);
+			SET_PED_ARMOUR(PLAYER_PED_ID(), 100);
+		}
+		infoboxText(GiveMaxHealthAndArmor_info_lang);
 	}
-	DrawBackground(11);
+	DrawBackground(12);
 	AddTitle(SelfTitle_lang);
 	AddSubtext(SelfTitle_Sub_lang);
-	AddBoolOption(GodMode_lang, &GodMode); // gives player god mode
-	AddBoolOption(Vanish_lang, &Vanish); // toggles invisable
-	AddBoolOption(NoRagdoll_lang, &DoNotRagdoll); // toggles no ragdoll
-	AddBoolOption(SuperJump_lang, &SuperJump); // allows player to jump very high
-	AddBoolOption(MobileRadio_lang, &MobileRadio); // toggle for Mobile Radio
-	AddBoolOption(Unlimited_Special_Ability_lang, &UnlimitedSpecialAbility);
-	AddBoolOption(NeverWanted_lang, &NeverWanted); // No wanted level 
-	AddBoolOption(ShakeMode_lang, &ShakeMode); // pretty much shake
-	AddIntOptionSettings(WantedLevel_lang, &wantedlvl, 0, 5); // allows the user to change there wanted level
-	AddBoolOption(MoneyDrop_lang, &Moneydrop);
-	Suidcide(Suicide_lang);
+	AddBoolOption(GodMode_lang, &GodMode, GodMode_Info_lang); // gives player god mode
+	AddBoolOption(Vanish_lang, &Vanish, Vanish_info_lang); // toggles invisable
+	AddBoolOption(NoRagdoll_lang, &DoNotRagdoll, NoRagdoll_info_lang); // toggles no ragdoll
+	AddBoolOption(SuperJump_lang, &SuperJump, SuperJump_info_lang); // allows player to jump very high
+	AddBoolOption(MobileRadio_lang, &MobileRadio, MobileRadio_info_lang); // toggle for Mobile Radio
+	AddBoolOption(Unlimited_Special_Ability_lang, &UnlimitedSpecialAbility, Unlimited_Speical_Ability_info_lang);
+	AddBoolOption(NeverWanted_lang, &NeverWanted, NeverWanted_info_lang); // No wanted level 
+	AddBoolOption(ShakeMode_lang, &ShakeMode, ShakeMode_info_lang); // pretty much shake
+	WantedLVL(WantedLevel_lang, WantedLevel_info_lang); // allows the user to change there wanted level
+	AddBoolOption(MoneyDrop_lang, &Moneydrop, MoneyDrop_info_lang);
+	Suidcide(Suicide_lang, Suicide_info_lang);
+	AddOption(GiveMaxHealthAndArmor_lang);
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -302,9 +289,9 @@ void SpawnCarOptions()
 {
 	DrawBackground(3);
 	AddTitle(SpawnOptions_lang);
-	AddBoolOption(SpawnInCar_lang, &Spawnincar);
-	AddBoolOption(DeleteOldVehicle_lang, &DeleteOldVehicle);
-	AddBoolOption(SpawnNotification_lang, &CarSpawnNotification);
+	AddBoolOption(SpawnInCar_lang, &Spawnincar, SpawninCar_info_lang);
+	AddBoolOption(DeleteOldVehicle_lang, &DeleteOldVehicle, DeleteOldVehicle_info_lang);
+	AddBoolOption(SpawnNotification_lang, &CarSpawnNotification, SpawnNotification_info_lang);
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -316,7 +303,7 @@ void spawner()
 {
 	DrawBackground(22);
 	AddTitle(VehicleSpawner_lang);
-	AddSubmenuOption(SpawnOptions_lang, SpawnOptions_MSG_lang, (SpawnCarOptions));
+	AddSubmenuOption(SpawnOptions_lang, SpawnNotification_info_lang, (SpawnCarOptions));
 	AddSubmenuOption("Super", "Displays all cars that you can spawn from the super class", (SuperCarSpawner));
 	AddSubmenuOption("Sports", "Displays all cars that you can spawn from the sports class", (SportsCarSpawner));
 	AddSubmenuOption("Coupes", "Displays all cars that you can spawn from the coupes class", (CoupesSpawner));
@@ -345,15 +332,16 @@ void spawner()
 }
 
 void VehicleOptions()
-{
+{ // set up set vehicle number plate SET_VEHICLE_NUMBER_PLATE_TEXT
+
 	DrawBackground(5);
 	AddTitle(Vehicle_Options_lang);
 	AddSubtext(Vehicle_Options_lang);
 	AddSubmenuOption(VehicleSpawner_lang, VehicleSpawner_MSG_lang, (spawner));
-	AddBoolOption(VehicleGodMode_lang, &VehicleRepair);
+	AddBoolOption(VehicleGodMode_lang, &VehicleRepair, VehicleGodMode_info_lang);
 	carfix(VehicleFix_lang);
-	killvehicle(DestroyVehicle_lang, 1);
-	killvehicle(DestroyEngine_lang, 2);
+	killvehicle(VehicleDestroy_lang);
+	VehOpt(CustomNumberPlate_lang, 1); // fix and test
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -373,12 +361,15 @@ void weaponoptions()
 			SET_PED_INFINITE_AMMO_CLIP(PLAYER_PED_ID(), false);
 		}
 	}
-	DrawBackground(3);
+	DrawBackground(6);
 	AddTitle(WeaponTitle_lang);
 	AddSubtext(WeaponTitle_Sub_lang);
 	GiveAllWeapons(GiveAllWeapons_lang);
 	RemoveWeapons(RemoveAllWeapons_lang);
-	AddBoolOption(InfiniteAmmo_lang, &InfinityAmmo);
+	AddBoolOption(InfiniteAmmo_lang, &InfinityAmmo, InfiniteAmmo_info_lang);
+	AddBoolOption(TeleportGun_lang, &TPGun, TeleportGun_info_lang);
+	AddBoolOption(ExplosiveAmmo_lang, &ExplosiveAmmo, ExplosiveAmmo_info_lang);
+	AddBoolOption(SuperPunch_lang, &SuperPunch, SuperPunch_info_lang);
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -435,9 +426,9 @@ void miscgame()
 	AddTitle(Misc_lang);
 	AddSubmenuOption(Time_lang, Time_MSG_lang, (TimeOptions));
 	AddSubmenuOption(Weather_lang, Weather_MSG_lang, (WeatherOptions));
-	AddBoolOption(DisableMap_lang, &Dismap);
-	AddBoolOption(ThermalVision_lang, &ThermalVision);
-	AddBoolOption(NightVision_lang, &NightVision);
+	AddBoolOption(DisableMap_lang, &Dismap, DisableMap_info_lang);
+	AddBoolOption(ThermalVision_lang, &ThermalVision, NULL);
+	AddBoolOption(NightVision_lang, &NightVision, NULL);
 	if (DrawInstructions)
 	{
 		DrawInstructionalButtons();
@@ -481,22 +472,23 @@ void Misc()
 
 void Setx()
 {
-	DrawBackground(11);
+	DrawBackground(12);
 	AddTitle(Settings_lang);
 	if (CurrentOption == 4)
 	{
 		BackgroundChanger();
 	}
 	AddSubmenuOption(Colors_lang, Colors_MSG_lang, (colr));
-	AddStringOption(Base_lang, &base, 1, 2, "NotYourDope", "LTS", "", "", "", "", "");
-	AddStringOption(ToggleButtons_lang, &ToggleButtons, 1, 7, "Boxuga", "CheckBox", "Caution", "Weed", "Flags", "Thumbs Up/Down", "Text");
-	AddIntOptionSettings(Background_lang, &background, 1, 10);
-	AddBoolOption(TitleOutline_lang, &TextOutlineTitle);
-	AddBoolOption(OptionsOutline_lang, &TextOutlineOptions);
-	AddBoolOption(OptionCountOutline_lang, &TextOutlineOptionCount);
-	AddBoolOption(SmoothScroll_lang, &SmoothScrolling);
-	AddBoolOption(LeftSided_lang, &LeftSided);
-	AddBoolOption(BackgroundImage_lang, &bgimage);
+	AddStringOption(Base_lang, Base_info_lang, &base, 1, 2, "NotYourDope", "LTS", "", "", "", "", "", "", "", "");
+	AddStringOption(ToggleButtons_lang, ToggleButtons_info_lang, &ToggleButtons, 1, 7, "Boxuga", "CheckBox", "Caution", "Weed", "Flags", "Thumbs Up/Down", "Text", "", "", "");
+	AddIntOptionSettings(Background_lang, &background, 1, 10, false);
+	AddBoolOption(TitleOutline_lang, &TextOutlineTitle, "");
+	AddBoolOption(OptionsOutline_lang, &TextOutlineOptions, "");
+	AddBoolOption(OptionCountOutline_lang, &TextOutlineOptionCount, "");
+	AddBoolOption(SmoothScroll_lang, &SmoothScrolling, "");
+	AddBoolOption(LeftSided_lang, &LeftSided, "");
+	AddBoolOption(BackgroundImage_lang, &bgimage, "");
+	AddBoolOption(InfoBox_lang, &InfoBox, InfoBox_info_lang);
 	AddCustomScriptOption();
 	if (DrawInstructions)
 	{
