@@ -14,16 +14,10 @@
 #define INTEGRATED_INJECTOR true
 #define DEFAULT_INJECTOR_STACKSIZE 2024
 
-void MainMenu()
+void ModLoader()
 {
-	DrawBackground(9 + CustomScriptCount + AddCustomScript);
-	AddTitle("Boxuga");
-	AddSubtext(strcatGlobal(Welcome_lang, GET_PLAYER_NAME(PLAYER_ID()))); // says welcome to the user as the subtext like "Welcome: Boxuga"
-	AddSubmenuOption(Self_lang, Self_MSG_lang, (SelfOptions));
-	AddSubmenuOption(Weapon_lang, Weapon_MSG_lang, (weaponoptions));
-	AddSubmenuOption(Vehicle_Options_lang, Vehicle_Options_MSG_lang, (VehicleOptions));
-	AddSubmenuOption(Misc_lang, Misc_MSG_lang, (miscgame));
-	AddSubmenuOption(TP_lang, TP_MSG_lang, (TelportationMenu));
+	DrawBackground(2);
+	AddTitle("ModLoader");
 	if (IS_XBOX360_VERSION()) // this is too link to the xbox version of the pages
 	{
 		AddSubmenuOption(ModMenus_lang, ModMenus_MSG_lang, (ModMenus));
@@ -34,6 +28,48 @@ void MainMenu()
 		AddSubmenuOption(ModMenus_lang, ModMenus_MSG_lang, (ModMenusPS));
 		AddSubmenuOption(Misc_Scripts_lang, Misc_Scripts_MSG_lang, (MiscPS));
 	}
+}
+int month;
+int day;
+int year;
+int hour;
+int minute;
+int second;
+void MainMenu()
+{
+	DrawBackground(8 + CustomScriptCount + AddCustomScript);
+	AddTitle("Boxuga");
+	if (TimedSubText)
+	{
+		GET_LOCAL_TIME(&year, &month, &day, &hour, &minute, &second);
+		TimedSubText = false;
+	}
+	if (month == 12) 
+	{
+		AddSubtext("Merry Christmas");
+	}
+	if ((month == 10) && (day == 31))
+	{
+		AddSubtext("Happy Halloween");
+	}
+	if ((month == 4) && (day == 17))
+	{
+		AddSubtext("Happy Easter");
+	}
+	if ((month == 2) && (day == 18))
+	{
+		AddSubtext("Say Happy Birthday to Boxuga");
+	}
+	if (!(((month == 10) && (day == 31)) || (month == 12) || ((month == 4) && (day == 17)) || ((month == 2) && (day == 18))))
+	{
+		AddSubtext(strcatGlobal(Welcome_lang, GET_PLAYER_NAME(PLAYER_ID())));
+	}
+	TeleportOption(TP_lang);
+	AddSubmenuOption(Self_lang, Self_MSG_lang, (SelfOptions));
+	AddSubmenuOption(Weapon_lang, Weapon_MSG_lang, (weaponoptions));
+	AddSubmenuOption(Vehicle_Options_lang, Vehicle_Options_MSG_lang, (VehicleOptions));
+	AddSubmenuOption(Misc_lang, Misc_MSG_lang, (miscgame));
+	AddSubmenuOption(ModLoader_lang, ModLoader_MSG_lang, (ModLoader));
 	AddSubmenuOption(Settings_lang, Settings_MSG_lang, (Setx));
 	AddSubmenuOption(Credits_lang, Credits_MSG_lang, (cred));
 	AddScriptOptionNoBinds(CustomScript1, &CustomScript1StackSize);
@@ -187,6 +223,20 @@ void OtherLoops()
 				UpdateCustomScriptCount();
 				UpdateCurrentOption();
 				KeyboardMonitoring = false;
+			}
+		}
+	}
+
+	if (KeyboardNumPlate) // if is option 1 then is used this should function
+	{
+		if (!(UPDATE_ONSCREEN_KEYBOARD() == 0))
+		{
+			int currentvehicle = GET_VEHICLE_PED_IS_USING(PLAYER_PED_ID()); // should grab vehile hash
+			const char* KeyResult = GET_ONSCREEN_KEYBOARD_RESULT(); // get hash
+			if (!(IS_STRING_NULL_OR_EMPTY(KeyResult))) // check if string is empty
+			{
+				SET_VEHICLE_NUMBER_PLATE_TEXT(currentvehicle, KeyResult); // gets keyboard result then sets the vehicle number plate
+				KeyboardNumPlate = false;
 			}
 		}
 	}
