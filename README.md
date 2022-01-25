@@ -25,3 +25,6 @@ this modloader has features like a built in menu to control Grand Theft Auto V S
 
 ## Why do some scripts only exist on certain platforms 
 They may not be easy to find on that platform
+
+## For ModLoader Devs/Porters
+find the Texture Directory's [Here Boxuga V1/2](https://github.com/BoxxyDEV/Boxuga-ModLoader/releases/download/V2/Scripts.zip)
