@@ -1333,109 +1333,17 @@ void killvehicle(const char* OptionText)
 	}
 }
 
-void TeleportOption(const char* OText)
+void TeleportOption(const char* Option_Text, vector3 loc)
 {
-	vector3 MountChiliad = vector3(494, 5589, 795);
-	vector3 LSIA = vector3(-989, -2905, 14);
-	vector3 MazeBank = vector3(-72, -820, 327);
-	vector3 MHouse = vector3(-824, 177, 72);
-	vector3 FNHouse = vector3(12, 548, 177);
-	vector3 FOHouse = vector3(-16, -1448, 31);
-	vector3 THouse = vector3(1985, 3813, 33);
-	vector3 TAir = vector3(1721, 3259, 41);
-	vector3 pedloc = GET_ENTITY_COORDS(PLAYER_PED_ID(), true);
-	AddStringOption(OText, TP_MSG_lang, &NumTeleportSwitch, 1, 10, "Mount Chiliad", "Los Santos Airport", "Maze Bank", "Michael's House", "Franklin's New House", "Franklin's Old House", "Trevor's House", "Trevor's Airfield", "Skyfall", "Waypoint");
-	if (WasXJustPressed(177)) // if x pressed then will tp player
+	AddOption(Option_Text);
+	if (WasXJustPressed(177))
 	{
-		if (NumTeleportSwitch == 1)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), MountChiliad, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 2)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), LSIA, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-	    if (NumTeleportSwitch == 3)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), MazeBank, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 4)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), MHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 5)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), FNHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 6)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), FOHouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 7)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), THouse, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 8)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), TAir, GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 9)
-		{
-			START_PLAYER_TELEPORT(PLAYER_ID(), vector3(pedloc.x, pedloc.y, 500), GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-		}
-		if (NumTeleportSwitch == 10)
-		{
-			if (DOES_BLIP_EXIST(GET_FIRST_BLIP_INFO_ID(8))) // checks if waypoint exists
-			{
-				vector3 waypoint = GET_BLIP_COORDS(GET_FIRST_BLIP_INFO_ID(8)); // this grabs tge waypoint and put it into coords varible
-				START_PLAYER_TELEPORT(PLAYER_ID(), vector3(waypoint.x, waypoint.y, waypoint.z), GET_ENTITY_HEADING(PLAYER_PED_ID()), true, true, true);
-			}
-		}
-		NotifyMSG("Boxuga", "Please wait all textures need to load");
+		NotifyMSG("Hedgehog", "Loading");
+		SET_ENTITY_COORDS(PLAYER_PED_ID(), loc, true, true, false, true);
 	}
-	if (WasXJustPressed(179))
-	{
-		if (NumTeleportSwitch == 1)
-		{
-			SET_NEW_WAYPOINT(vector2(MountChiliad.x, MountChiliad.y));
-		}
-		if (NumTeleportSwitch == 2)
-		{
-			SET_NEW_WAYPOINT(vector2(LSIA.x, LSIA.y));
-		}
-		if (NumTeleportSwitch == 3)
-		{
-			SET_NEW_WAYPOINT(vector2(MazeBank.x, MazeBank.y));
-		}
-		if (NumTeleportSwitch == 4)
-		{
-			SET_NEW_WAYPOINT(vector2(MHouse.x, MHouse.y));
-		}
-		if (NumTeleportSwitch == 5)
-		{
-			SET_NEW_WAYPOINT(vector2(FNHouse.x, FNHouse.y));
-		}
-		if (NumTeleportSwitch == 6)
-		{
-			SET_NEW_WAYPOINT(vector2(FOHouse.x, FOHouse.y));
-		}
-		if (NumTeleportSwitch == 7)
-		{
-			SET_NEW_WAYPOINT(vector2(THouse.x, THouse.y));
-		}
-		if (NumTeleportSwitch == 8)
-		{
-			SET_NEW_WAYPOINT(vector2(TAir.x, TAir.y));
-		}
-		if (NumTeleportSwitch > 8)
-		{
-			NotifyMSG("Boxuga", "You can not waypoint this sorry mate");
-		}
-	}
-	if (CurrentOption == OptionCount)
+		if (CurrentOption == OptionCount)
 	{
 		AddInstructionalButton(Cross, "Teleport");
-		AddInstructionalButton(Square, "Waypoint");
 	}
 }
 
@@ -1654,3 +1562,4 @@ void WantedLVL(const char* Option, char* Help)
 		infoboxText(Help);
 	}
 }
+ 

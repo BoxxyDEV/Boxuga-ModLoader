@@ -1,7 +1,7 @@
 #pragma once
 #pragma region General/Main Menu
-char* HintMSG_lang = "Welecome To Boxuga Loader to Open Press ~INPUT_SCRIPT_PAD_LEFT~ + ~INPUT_FRONTEND_LB~";
-char* OpenMSG = "Gday mate Welcome to the Loader";
+char* HintMSG_lang = "Welecome To Hedgehog Menu to Open Press ~INPUT_SCRIPT_PAD_LEFT~ + ~INPUT_FRONTEND_LB~";
+char* OpenMSG = "Gday mate Welcome to the Menu";
 char* Welcome_lang = "Welcome: "; // please leave a space
 char* ModMenus_lang = "Mod Menus";
 char* ModMenus_MSG_lang = "Mod Menus isnt that explainitory";
@@ -17,8 +17,10 @@ char* Misc_lang = "Misc Options";
 char* Misc_MSG_lang = "Modify up the world";
 char* TP_lang = "Teleportation";
 char* TP_MSG_lang = "Teleport Anywhere";
+char* Shops_lang = "Shops";
+char* TP_Shops_MSG_lang = "Teleport to the Shops";
 char* Settings_lang = "Settings";
-char* Settings_MSG_lang = "Modify lots of aspects of the loader";
+char* Settings_MSG_lang = "Modify lots of aspects of the Menu";
 char* Credits_lang = "Credits";
 char* Credits_MSG_lang = "Credits to the people who helped make this possible :)";
 char* Back_lang = "Back";
@@ -102,7 +104,7 @@ char* DestroyVehicleOption_lang = "Destory Vehicle"; // added in 2.0
 
 #pragma region Settings/Colors
 char* TitleColors_lang = "Title";
-char* TitleColors_MSG_lang = "Title is what says Boxuga at the top";
+char* TitleColors_MSG_lang = "Title is what says Hedgehog at the top";
 char* BannerColors_lang = "Banner";
 char* BannerColors_MSG_lang = "The Banner is whats at the top";
 char* BackgroundColors_lang = "Background - with Background Image Off";

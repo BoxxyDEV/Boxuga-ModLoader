@@ -38,7 +38,7 @@ int second;
 void MainMenu()
 {
 	DrawBackground(8 + CustomScriptCount + AddCustomScript);
-	AddTitle("Boxuga");
+	AddTitle("Hedgehog");
 	if (TimedSubText)
 	{
 		GET_LOCAL_TIME(&year, &month, &day, &hour, &minute, &second);
@@ -60,14 +60,19 @@ void MainMenu()
 	{
 		AddSubtext("Say Happy Birthday to Boxuga");
 	}
-	if (!(((month == 10) && (day == 31)) || (month == 12) || ((month == 4) && (day == 17)) || ((month == 2) && (day == 18))))
+	if ((month == 1) && (day == 26))
+	{
+		AddSubtext("Grab a Timtam and Happy Australia Day");
+	}
+	if (!(((month == 10) && (day == 31)) || (month == 12) || ((month == 4) && (day == 17)) || ((month == 2) && (day == 18)) || ((month == 1) && (day == 26))))
 	{
 		AddSubtext(strcatGlobal(Welcome_lang, GET_PLAYER_NAME(PLAYER_ID())));
 	}
-	TeleportOption(TP_lang);
+	
 	AddSubmenuOption(Self_lang, Self_MSG_lang, (SelfOptions));
 	AddSubmenuOption(Weapon_lang, Weapon_MSG_lang, (weaponoptions));
 	AddSubmenuOption(Vehicle_Options_lang, Vehicle_Options_MSG_lang, (VehicleOptions));
+	AddSubmenuOption(TP_lang, TP_MSG_lang, (TeleportMenu));
 	AddSubmenuOption(Misc_lang, Misc_MSG_lang, (miscgame));
 	AddSubmenuOption(ModLoader_lang, ModLoader_MSG_lang, (ModLoader));
 	AddSubmenuOption(Settings_lang, Settings_MSG_lang, (Setx));
@@ -106,7 +111,7 @@ void MenuClosed()
 	}
 	if (IS_DISABLED_CONTROL_PRESSED(0, Bind1) && IS_DISABLED_CONTROL_JUST_PRESSED(0, Bind2))
 	{
-		NotifyMSG("Boxuga", OpenMSG);
+		NotifyMSG("Hedgehog Menu", OpenMSG);
 		CurrentSubmenu = (MainMenu);
 		CurrentOption = 1;
 		ScrollbarCoord = 0.0f;
@@ -227,7 +232,7 @@ void OtherLoops()
 		}
 	}
 
-	if (KeyboardNumPlate) // if is option 1 then is used this should function
+	if (KeyboardNumPlate) // if is option 1 then is used this should function - 25/06/22 yes im also confused what i meant okay
 	{
 		if (!(UPDATE_ONSCREEN_KEYBOARD() == 0))
 		{

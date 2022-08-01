@@ -44,7 +44,7 @@ bool ExplosiveAmmo = false; //set to true if you want explosives where u shoot
 bool SuperPunch = false; // if set to true you will have
 bool InfoBox = true;
 bool TimedSubText = true; // turn this off if you dont want to have on custom dates like in decemeber it will say Merry Christmas
-int Rando; // this is not an option
+int Rando; // this is just a value that gets chaged randomly don't worry about it
 int MoneyBagType = 1; // change what type of money bag 1 for classic and 2 for pc style
 int TitleFont = 7;
 int BannerR = 161, BannerG, BannerB = 214, BannerA = 235;

@@ -526,3 +526,60 @@ void MiscPS()
 		DrawInstructionalButtons();
 	}
 }
+
+void Stores()
+{
+	DrawBackground(27);
+	AddTitle("Shops");
+	TeleportOption("Vanilla Unicorn", vector3(106, -1331, 29));
+	TeleportOption("Ammunation - Sandy Shores", vector3(1707, 3743, 33));
+	TeleportOption("Ammunation - Hawick", vector3(240, -46, 69)); // 69 ha nice
+	TeleportOption("Ammunation - La Mesa", vector3(843, -1021, 27));
+	TeleportOption("Ammunation - Paleto Bay", vector3(-321, 6073, 31));
+	TeleportOption("Ammunation - Little Seoul", vector3(-1317, -389, 36));
+	TeleportOption("Ammunation - Great Chaparral", vector3(-1109, 2685, 18));
+	TeleportOption("Ammunation - Chumash", vector3(-3156, 1083, 20));
+	TeleportOption("Ammunation - Tataviam Mountains", vector3(2570, 307, 108));
+	TeleportOption("Discount Store - Stawberry", vector3(84, -1393, 29));
+	TeleportOption("Discount Store - Grand Senora Desert", vector3(1193, 2694, 37));
+	TeleportOption("Discount Store - Grapeseed", vector3(1679, 4820, 41));
+	TeleportOption("Discount Store - Great Chaparral", vector3(-1090, 2700, 19));
+	TeleportOption("Discount Store - Paleto Bay", vector3(-2, 6521, 31));
+	TeleportOption("Binco - Vespucci Canals", vector3(84, -1393, 29));
+	TeleportOption("Binco - Textile City", vector3(413, -812, 29));
+	TeleportOption("Ponsonbys - Rockford Hills", vector3(-719, -160, 37));
+	TeleportOption("Ponsonbys - Morningwood", vector3(-1458, -230, 49));
+	TeleportOption("Ponsonbys - Burton", vector3(-150, -304, 39));
+	TeleportOption("Suburban - Del Perro", vector3(-1210, -784, 17));
+	TeleportOption("Suburban - Harmony", vector3(620, 2744, 42));
+	TeleportOption("Suburban - Hawick", vector3(132, -201, 54));
+	TeleportOption("Suburban - Chumash", vector3(-3163, 1065, 20));
+	TeleportOption("LS Customs - Airport", vector3(-1130, -1987, 13));
+	TeleportOption("LS Customs - La Mesa", vector3(715, -1089, 22));
+	TeleportOption("LS Customs - Burton", vector3(-366, -132, 38));
+	TeleportOption("LS Customs - Grand Senora Desert", vector3(1177, 2659, 38));
+	TeleportOption("Beeker's Garage", vector3(123, 6610, 31));
+}
+
+void TeleportMenu()
+{
+	DrawBackground(16);
+	AddTitle(TP_lang);
+	AddSubmenuOption(Shops_lang, TP_Shops_MSG_lang, (Stores));
+	TeleportOption("Mount Chilliad", vector3(494, 5589, 795));
+	TeleportOption("Los Santos International Airport", vector3(-989, -2905, 14));
+	TeleportOption("Maze Bank", vector3(-72, -820, 327));
+	TeleportOption("Michael's Place", vector3(-824, 177, 72));
+	TeleportOption("Franklin's New Place", vector3(12, 548, 177));
+	TeleportOption("Franklin's Old Place", vector3(-16, -1448, 31));
+	TeleportOption("Trevor's Caravan", vector3(1985, 3813, 33));
+	TeleportOption("Sandy Shores Airstrip", vector3(1721, 3259, 41));
+	TeleportOption("Sandy Shores Medical Center", vector3(1842, 3670, 33));
+	TeleportOption("Prison", vector3(1854, 2610, 45));
+	TeleportOption("Rebel Radio", vector3(1854, 2610, 45));
+	TeleportOption("Radio Towers", vector3(810, 1275, 360));
+	TeleportOption("Vinewood Sign", vector3(704, 1206, 325));
+	TeleportOption("Casino", vector3(909, 64, 79));
+	TeleportOption("LS Pier", vector3(-1650, -1092, 13));
+}
+
