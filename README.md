@@ -1,5 +1,5 @@
 # Boxuga-ModLoader
-Website: [boxuga.ml](BoxxyDEV.github.io/boxuga-modloader-site)
+Website: [boxu.ga/mods/consoles/](http://boxu.ga/mods/console/)
 
 ## Who made this
 Boxuga Loader is developed by Boxuga aka BoxxyDEV 
